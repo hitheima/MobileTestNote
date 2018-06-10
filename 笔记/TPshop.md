@@ -66,6 +66,60 @@ def find_toast(driver, message, timeout=3):
 
 
 
+### 截图
+
+应该在重要的时候，进行截图，并且上传到报告中。（比如，在测试搜索功能。那么搜索的结果，就算是重点）
+
+截图使用，screenshot_as_file("路径")，需要在项目中，专门建立一个文件夹。名字叫做screen。来保存截图
+
+### 上传截图到allure
+
+```
+allure.attach('描述', open('xx.png', 'rb').read(), allure.attach_type.PNG)
+```
+
+类似于allure的文字描述。第一个参数是描述，第二个参数是描述的内容，第三个参数是类型。
+
+### 关于git的忽略文件
+
+在上传git项目的时候，有些不需要上传的文件，比如，python的缓存以及编译文件。包括report的报告。还有pycharm的.idea等。如果不想上传，需要做一个忽略文件的操作。
+
+忽略文件的名字，叫做.gitignore。具体规则，可以百度。一般把，github自带的python的忽略文件，再加上report和.idea就可以了。
+
+剩下的操作都一样，这个忽略文件要放在项目目录下。（和.git同目录）
+
+### 配置jenkins
+
+1. 运行服务
+2. 项目，git的地址，账号密码，时间触发器，pytest的环境，allure报告的文件夹名称（xml的所在的文件夹名字）。这样可以生成报告，会自动检测git代码的更变。
+3. 发件人和收件人。
+4. 发件人需要先测试，搜索location 配置管理员邮箱，搜索“邮件通知”配置smtp以及用户名和密码。点击测试发信。
+5. 发件人正经的配置，搜索，content，需要配置选择html的模板，以及模板的内容，在上面一点，有一个英文的 email notifacation。配置smtp以及用户名和密码。
+
+### app开发一些常识
+
+关于toast。toast是只在android中有。不是所有的两分钟消失的那个视图都叫做toast。
+
+android：
+
+​	按钮：Button
+
+​	文本框，显示文字：TextView
+
+​	输入框，用来输入：EditText
+
+ios：
+
+​	按钮：UIButton
+
+​	文本框，显示文字：UILabel
+
+​	输入框，用来输入：UITextFiled
+
+在iOS中也有一个叫做UITextView的东西，是用来输入大段文本的
+
+在iOS类名中有前缀，涉及到视图都是UI开头。
+
 ### bug
 
 关于xpath的and问题。
