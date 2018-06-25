@@ -25,7 +25,7 @@
 
 ```
 
-![po模式](/Users/Yoson/Desktop/MobileTestNote/笔记/移动端测试_image/po&%E9%9D%9E.png)
+![po模式](./移动端测试_image/po&%E9%9D%9E.png)
 
 
 
@@ -587,57 +587,635 @@ PO模式
 - pytest.ini
 ```
 
-
-
 ### 代码
 
-## 抽取点击和输入到base_action
+display_page.py
+
+```
+from selenium.webdriver.common.by import By
+
+
+class DisplayPage:
+
+    display_button = By.XPATH, "//*[contains(@text,'显示')]"
+    search_button = By.ID, "com.android.settings:id/search"
+    search_edit_text = By.ID, "android:id/search_src_text"
+    back_button = By.CLASS_NAME, "android.widget.ImageButton"
+
+    def __init__(self, driver):
+        self.driver = driver
+
+    def click_display(self):
+        self.find_element(self.display_button).click()
+
+    def click_search(self):
+        self.find_element(self.search_button).click()
+
+    def input_keyword(self, content):
+        self.find_element(self.search_edit_text).send_keys(content)
+
+    def click_back(self):
+        self.find_element(self.back_button).click()
+
+    def find_element(self, feature):
+        return self.driver.find_element(feature[0], feature[1])
+
+```
+
+
+
+network_page.py
+
+```
+from selenium.webdriver.common.by import By
+
+
+class NetwrokPage:
+
+    more_button = By.XPATH, "//*[contains(@text,'更多')]"
+    mobile_network_button = By.XPATH, "//*[contains(@text,'移动网络')]"
+    first_network_button = By.XPATH, "//*[contains(@text,'首选网络类型')]"
+    network_2g_button = By.XPATH, "//*[contains(@text,'2G')]"
+    network_3g_button = By.XPATH, "//*[contains(@text,'3G')]"
+
+    def __init__(self, driver):
+        self.driver = driver
+
+    def click_more(self):
+        self.find_element(self.more_button).click()
+
+    def click_mobile_network(self):
+        self.find_element(self.mobile_network_button).click()
+
+    def click_first_network(self):
+        self.find_element(self.first_network_button).click()
+
+    def click_2g_network(self):
+        self.find_element(self.network_2g_button).click()
+
+    def click_3g_network(self):
+        self.find_element(self.network_3g_button).click()
+
+    def find_element(self, feature):
+        return self.driver.find_element(feature[0], feature[1])
+
+```
+
+
+
+## 抽取点击和输入到page
 
 ### 需求
 
+将click和send_keys像find_element一样进行封装。
+
+封装好后的使用方式为
+
+```
+self.click(self.network_button)
+```
+
 ### 好处
+
+写法更简单，并为后期抽取到base做准备。
 
 ### 步骤
 
+1. 在page中写一个click方法。
+2. 参数为“特征”。
+3. 在自己的click函数中查找并点击。
+4. send_keys同理。
+
 ### 文件目录
+
+```
+PO模式
+- base
+- - __init__.py
+- - base_driver.py
+- page
+- - __init__.py
+- - network_page.py
+- - display_page.py
+- scripts
+- - __init__.py
+- - test_network.py
+- - test_dispaly.py
+- pytest.ini
+```
+
+
 
 ### 代码
 
-## 抽取find_element到base_action
+display_page.py
+
+```
+from selenium.webdriver.common.by import By
+
+
+class DisplayPage:
+
+    display_button = By.XPATH, "//*[contains(@text,'显示')]"
+    search_button = By.ID, "com.android.settings:id/search"
+    search_edit_text = By.ID, "android:id/search_src_text"
+    back_button = By.CLASS_NAME, "android.widget.ImageButton"
+
+    def __init__(self, driver):
+        self.driver = driver
+
+    def click_display(self):
+        self.click(self.display_button)
+
+    def click_search(self):
+        self.click(self.search_button)
+
+    def input_keyword(self, content):
+        self.input(self.search_edit_text, content)
+
+    def click_back(self):
+        self.click(self.back_button)
+
+    def find_element(self, feature):
+        return self.driver.find_element(feature[0], feature[1])
+
+    def click(self, feature):
+        self.find_element(feature).click()
+
+    def input(self, feature, text):
+        self.find_element(feature).send_keys(text)
+
+```
+
+
+
+network_page.py
+
+```
+from selenium.webdriver.common.by import By
+
+
+class NetwrokPage:
+
+    more_button = By.XPATH, "//*[contains(@text,'更多')]"
+    mobile_network_button = By.XPATH, "//*[contains(@text,'移动网络')]"
+    first_network_button = By.XPATH, "//*[contains(@text,'首选网络类型')]"
+    network_2g_button = By.XPATH, "//*[contains(@text,'2G')]"
+    network_3g_button = By.XPATH, "//*[contains(@text,'3G')]"
+
+    def __init__(self, driver):
+        self.driver = driver
+
+    def click_more(self):
+        self.click(self.more_button)
+
+    def click_mobile_network(self):
+        self.click(self.mobile_network_button)
+
+    def click_first_network(self):
+        self.click(self.first_network_button)
+
+    def click_2g_network(self):
+        self.click(self.network_2g_button)
+
+    def click_3g_network(self):
+        self.click(self.network_3g_button)
+
+    def find_element(self, feature):
+        return self.driver.find_element(feature[0], feature[1])
+
+    def click(self, feature):
+        self.find_element(feature).click()
+
+    def input(self, feature, text):
+        self.find_element(feature).send_keys(text)
+
+```
+
+
+
+## 抽取find&input&click到base_action
 
 ### 需求
 
+将find&input&click等基本动作放倒base_action中
+
 ### 好处
+
+增加复用性，以后基本不需要调用find_element方法
 
 ### 步骤
 
+1. 在base中新建一个base_action.py
+2. 将三个方法都移动到对应的BaseAction下
+3. 使Page继承BaseAction，从而可以直接使用self.click等方法
+4. 在base的init方法中，传入driver解决使用driver的问题
+5. 移除page中的init（创建page对象的时候，如果没有init会调用父类的init）
+
 ### 文件目录
 
+```
+PO模式
+- base
+- - __init__.py
+- - base_action.py
+- - base_driver.py
+- page
+- - __init__.py
+- - network_page.py
+- - display_page.py
+- scripts
+- - __init__.py
+- - test_network.py
+- - test_dispaly.py
+- pytest.ini
+```
+
 ### 代码
+
+display_page.py
+
+```
+from selenium.webdriver.common.by import By
+from base.base_action import BaseAction
+
+
+class DisplayPage(BaseAction):
+
+    display_button = By.XPATH, "//*[contains(@text,'显示')]"
+    search_button = By.ID, "com.android.settings:id/search"
+    search_edit_text = By.ID, "android:id/search_src_text"
+    back_button = By.CLASS_NAME, "android.widget.ImageButton"
+
+    def click_display(self):
+        self.click(self.display_button)
+
+    def click_search(self):
+        self.click(self.search_button)
+
+    def input_keyword(self, content):
+        self.input(self.search_edit_text, content)
+
+    def click_back(self):
+        self.click(self.back_button)
+
+```
+
+
+
+network_page.py
+
+```
+from selenium.webdriver.common.by import By
+from base.base_action import BaseAction
+
+
+class NetwrokPage(BaseAction):
+
+    more_button = By.XPATH, "//*[contains(@text,'更多')]"
+    mobile_network_button = By.XPATH, "//*[contains(@text,'移动网络')]"
+    first_network_button = By.XPATH, "//*[contains(@text,'首选网络类型')]"
+    network_2g_button = By.XPATH, "//*[contains(@text,'2G')]"
+    network_3g_button = By.XPATH, "//*[contains(@text,'3G')]"
+
+    def click_more(self):
+        self.click(self.more_button)
+
+    def click_mobile_network(self):
+        self.click(self.mobile_network_button)
+
+    def click_first_network(self):
+        self.click(self.first_network_button)
+
+    def click_2g_network(self):
+        self.click(self.network_2g_button)
+
+    def click_3g_network(self):
+        self.click(self.network_3g_button)
+
+
+```
+
+
+
+base_action.py
+
+```
+class BaseAction:
+
+    def __init__(self, driver):
+        self.driver = driver
+
+    def find_element(self, feature):
+        return self.driver.find_element(feature[0], feature[1])
+
+    def click(self, feature):
+        self.find_element(feature).click()
+
+    def input(self, feature, text):
+        self.find_element(feature).send_keys(text)
+```
+
+
 
 ## 增加WebDriverWait
 
 ### 需求
 
+在找元素的时候都增加WebDriverWait
+
 ### 好处
+
+防止手机卡顿的时候突然找不到元素
 
 ### 步骤
 
+1. 将BaseAction中的find_element方法中，嵌套一个WebDriverWait
+
 ### 文件目录
+
+```
+PO模式
+- base
+- - __init__.py
+- - base_action.py
+- - base_driver.py
+- page
+- - __init__.py
+- - network_page.py
+- - display_page.py
+- scripts
+- - __init__.py
+- - test_network.py
+- - test_dispaly.py
+- pytest.ini
+```
+
+
 
 ### 代码
 
-## page的统一入口
+base_action.py
+
+```
+from selenium.webdriver.support.wait import WebDriverWait
+
+
+class BaseAction:
+
+    def __init__(self, driver):
+        self.driver = driver
+
+    def find_element(self, feature):
+        wait = WebDriverWait(self.driver, 5, 1)
+        return wait.until(lambda x: x.find_element(feature[0], feature[1]))
+
+    def click(self, feature):
+        self.find_element(feature).click()
+
+    def input(self, feature, text):
+        self.find_element(feature).send_keys(text)
+```
+
+
+
+## 增加find_elements
 
 ### 需求
 
+在Base_action中写一个find_elements方法
+
 ### 好处
+
+find_element和find_elements都可能会用到，方便以后调用
 
 ### 步骤
 
+1. 复制一份find_element
+2. 直接在副本的element后面加s即可
+
 ### 文件目录
 
+```
+PO模式
+- base
+- - __init__.py
+- - base_action.py
+- - base_driver.py
+- page
+- - __init__.py
+- - network_page.py
+- - display_page.py
+- scripts
+- - __init__.py
+- - test_network.py
+- - test_dispaly.py
+- pytest.ini
+```
+
+
+
 ### 代码
+
+```
+from selenium.webdriver.support.wait import WebDriverWait
+
+
+class BaseAction:
+
+    def __init__(self, driver):
+        self.driver = driver
+
+    def find_element(self, feature):
+        wait = WebDriverWait(self.driver, 5, 1)
+        return wait.until(lambda x: x.find_element(feature[0], feature[1]))
+
+    def find_elements(self, feature):
+        wait = WebDriverWait(self.driver, 5, 1)
+        return wait.until(lambda x: x.find_elements(feature[0], feature[1]))
+    
+    def click(self, feature):
+        self.find_element(feature).click()
+
+    def input(self, feature, text):
+        self.find_element(feature).send_keys(text)
+```
+
+
+
+## action导入模块的问题
+
+### 需求
+
+让base_action像base_driver一样在\__init__中导入
+
+### 好处
+
+其他地方是有base_action不在需要写base.base_action
+
+### 代码
+
+base/\__init__.py
+
+```
+from .base_driver import init_driver
+from .base_action import BaseAction
+```
+
+将page中的
+
+```
+from base.base_action import BaseAction
+```
+
+改为
+
+```
+from base import BaseAction
+```
+
+## 代码page的统一入口
+
+### 需求
+
+会有一些需求是在页面中调用其他页面的“动作”，比如某些登录。
+
+### 好处
+
+方便调用其他页面的动作
+
+### 步骤
+
+1. 新建一个page.py文件。
+2. 写对应个数的函数并用属性装饰器装饰
+3. 直接返回对应的page对象
+4. 增加 \__init__ 函数传入driver
+
+### 文件目录
+
+```
+PO模式
+- base
+- - __init__.py
+- - base_action.py
+- - base_driver.py
+- page
+- - __init__.py
+- - page.py
+- - network_page.py
+- - display_page.py
+- scripts
+- - __init__.py
+- - test_network.py
+- - test_dispaly.py
+- pytest.ini
+```
+
+
+
+### 代码
+
+page.py
+
+```
+from .network_page import NetwrokPage
+from .display_page import DisplayPage
+
+
+class Page:
+
+    def __init__(self, driver):
+        self.driver = driver
+
+    @property
+    def display(self):
+        return DisplayPage(self.driver)
+
+    @property
+    def network(self):
+        return NetwrokPage(self.driver)
+```
+
+
+
+test_display.py
+
+```
+from base import init_driver
+from page.page import Page
+
+
+class TestDisplay:
+
+    def setup(self):
+        self.driver = init_driver()
+        self.page = Page(self.driver)
+
+    def test_display_search(self):
+        self.page.display.click_display()
+        self.page.display.click_search()
+        self.page.display.input_keyword("hello")
+        self.page.display.click_back()
+
+```
+
+
+
+test_network.py
+
+```
+from base import init_driver
+from page.page import Page
+
+
+class TestNetwrok:
+
+    def setup(self):
+        self.driver = init_driver()
+        self.page = Page(self.driver)
+
+    def test_network_2g(self):
+        self.page.network.click_more()
+        self.page.network.click_mobile_network()
+        self.page.network.click_first_network()
+        self.page.network.click_2g_network()
+
+    def test_network_3g(self):
+        self.page.network.click_more()
+        self.page.network.click_mobile_network()
+        self.page.network.click_first_network()
+        self.page.network.click_3g_network()
+```
+
+## page导入模块的问题
+
+### 需求
+
+让page像base_driver一样在\__init__中导入
+
+### 好处
+
+其他地方是有page不在需要写page.page
+
+### 代码
+
+page/\__init__.py
+
+```
+from .page import Page
+```
+
+将scripts中的
+
+```
+from page.page import Page
+```
+
+改为
+
+```
+from page import Page
+```
 
 ## XPath特殊处理
 
