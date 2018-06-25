@@ -353,7 +353,7 @@ from .base_driver import init_driver
 
 系统内部都是这么写的，也更省事儿。
 
-## 分离测试脚本
+## 分离测试脚本和页面
 
 ### 需求
 
@@ -493,3 +493,160 @@ class TestNetwork:
         self.network_page.click_3g_network()
 ```
 
+## 输入文字由脚本传入
+
+### 需求
+
+将display配置中的hello移动到test脚本中。
+
+input方法，需要传一个要输入文字的参数，并在方法中使用。
+
+### 好处
+
+- 方便脚本做参数化
+
+### 步骤
+
+### 文件目录
+
+### 代码
+
+## 实验 - find_element_by_xxx和find_element
+
+```
+self.driver.find_element_by_xpath("//*[contains(@text,'移动网络')]")
+<==>
+self.driver.find_element(By.XPATH, "//*[contains(@text,'移动网络')]")
+```
+
+class_name 和 id 一样。
+
+可以将字符串部分，写在最上面。
+
+当获取方式不变，获取的字符串的部分发生改变的时候，可以快速的修改。
+
+此时会发现，如果有一个元素的获取方式发生变换后，需要上下改两个地方。先保留疑问。
+
+## 实验 - 元组的写法
+
+```
+a = 1, 2
+```
+
+a 本质上是一个元组
+
+## 实验 - 二次封装find_element
+
+自己写一个find_element方法。
+
+调用系统的find_element方法，并接受系统的返回值，系统需要传两个参数，我们的方法传一个参数，但是是一个元组，里面有两个元素。第一个元素表示系统方法的第一个参数，第二个元素表示系统方法的第二个参数。
+
+```
+# 元素的特征(元组)
+mobile_network_button = By.XPATH, "//*[contains(@text,'移动网络')]"
+
+#调用
+find_element(self.mobile_network_button)
+
+# 封装后的函数
+def find_element(feature):
+	# 调用系统的方法
+	return self.driver.find_element(feature[0], feature[1])
+```
+
+## 抽取find_element和元素的特征到page
+
+### 需求
+
+- 将find_element_by_xxx改为driver中的find_element方法
+
+### 好处
+
+- 提高复用性
+
+### 步骤
+
+1. 观察find_element方法，需要两个参数，一个是找的方式（by），一个是找什么（字符串）。
+2. 自己在page中单独写一个find_element方法，调用系统并使用元组的形式进行传参
+
+### 文件目录
+
+```
+PO模式
+- base
+- - __init__.py
+- - base_driver.py
+- page
+- - __init__.py
+- - network_page.py
+- - display_page.py
+- scripts
+- - __init__.py
+- - test_network.py
+- - test_dispaly.py
+- pytest.ini
+```
+
+
+
+### 代码
+
+## 抽取点击和输入到base_action
+
+### 需求
+
+### 好处
+
+### 步骤
+
+### 文件目录
+
+### 代码
+
+## 抽取find_element到base_action
+
+### 需求
+
+### 好处
+
+### 步骤
+
+### 文件目录
+
+### 代码
+
+## 增加WebDriverWait
+
+### 需求
+
+### 好处
+
+### 步骤
+
+### 文件目录
+
+### 代码
+
+## page的统一入口
+
+### 需求
+
+### 好处
+
+### 步骤
+
+### 文件目录
+
+### 代码
+
+## XPath特殊处理
+
+### 需求
+
+### 好处
+
+### 步骤
+
+### 文件目录
+
+### 代码
