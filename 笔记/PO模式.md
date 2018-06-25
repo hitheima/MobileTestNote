@@ -1217,14 +1217,33 @@ from page.page import Page
 from page import Page
 ```
 
+## 实验 - 字符串相关方法
+
+- 分割字符串（按照某一个字符分割成列表）
+  - split
+- 判断是否以什么字符串开头
+  - rstrip
+- 删除尾部字符串
+  - startwith
+- 判断变量是否是某个类型
+  - isinstance(变量, 类型)
+
+## 实验 - xpath精确查找
+
+```
+//*[@text='Android']
+```
+
+## 实验 - xpath多条件查找
+
+```
+//*[@text='Android' and @index='0']
+```
+
+## 实验 - 单个xpath处理
+
+## 实验 - 多个xpath处理
+
 ## XPath特殊处理
 
-### 需求
-
-### 好处
-
-### 步骤
-
-### 文件目录
-
-### 代码
+### 
