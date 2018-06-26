@@ -1,4 +1,4 @@
-## PO模式
+##  PO模式
 
 ### Page Object Model
 
@@ -798,7 +798,7 @@ class NetwrokPage:
 
 ### 需求
 
-将find&input&click等基本动作放倒base_action中
+将find&input&click等基本动作放到base_action中
 
 ### 好处
 
@@ -983,7 +983,7 @@ class BaseAction:
 
 ### 需求
 
-在Base_action中写一个find_elements方法
+在BaseAction中写一个find_elements方法
 
 ### 好处
 
@@ -1074,7 +1074,7 @@ from base.base_action import BaseAction
 from base import BaseAction
 ```
 
-## 代码page的统一入口
+## page的统一入口
 
 ### 需求
 
@@ -1222,9 +1222,9 @@ from page import Page
 - 分割字符串（按照某一个字符分割成列表）
   - split
 - 判断是否以什么字符串开头
-  - rstrip
-- 删除尾部字符串
   - startwith
+- 删除尾部字符串
+  - rstrip
 - 判断变量是否是某个类型
   - isinstance(变量, 类型)
 
@@ -1242,8 +1242,166 @@ from page import Page
 
 ## 实验 - 单个xpath处理
 
+```
+if isinstance(value, str):
+
+    res_value = ""
+    values = feature.split(",")
+    if len(values) == 3:
+        if values[2] == "1":
+            res_value += "@%s='%s' and " % (values[0], values[1])
+        elif values[2] == "0":
+            res_value += "contains(@%s,'%s') and " % (values[0], values[1])
+    elif len(values) == 2:
+        res_value += "contains(@%s,'%s') and " % (values[0], values[1])
+
+```
+
 ## 实验 - 多个xpath处理
+
+```
+if isinstance(value, tuple):
+	for i in value:
+	    res_value = ""
+	    values = feature.split(",")
+	    if len(values) == 3:
+	        if values[2] == "1":
+	            res_value += "@%s='%s' and " % (values[0], values[1])
+	        elif values[2] == "0":
+	            res_value += "contains(@%s,'%s') and " % (values[0], values[1])
+	    elif len(values) == 2:
+	        res_value += "contains(@%s,'%s') and " % (values[0], values[1])
+```
 
 ## XPath特殊处理
 
-### 
+### 需求
+
+使用“text,显示”拼接成“//*[contains(@text,'显示')]”
+
+使用“text,显示,1”拼接成“//*[@text='显示']”
+
+使用“text,显示,0”拼接成“//*[contains(@text,'显示')]”
+
+使用“("text,显示,0", "text,android,1")”拼接成“//*[contains(@text,'显示') and @text='android']”
+
+且不影响原始写法的使用
+
+### 好处
+
+xpath以后可以更方便的使用。
+
+### 代码
+
+base_action.py
+
+```
+from selenium.webdriver.common.by import By
+from selenium.webdriver.support.wait import WebDriverWait
+
+
+class BaseAction:
+
+    def __init__(self, driver):
+        self.driver = driver
+
+    def click(self, feature):
+        """
+        根据某个特征，进行查找并且点击
+        :param feature: 特征
+        :return:
+        """
+        self.find_element(feature).click()
+
+    def input(self, feature, text):
+        """
+        根据某个特征，进行查找并且输入对应的文字
+        :param feature: 特征
+        :param text: 文字
+        :return:
+        """
+        self.find_element(feature).send_keys(text)
+
+    def find_element(self, feature):
+        """
+        根据特征，找元素
+        :param feature: 特征
+        :return: 元素
+        """
+        by = feature[0]
+        value = feature[1]
+        if by == By.XPATH:
+            value = self.__make_xpath_with_feature(value)
+            print(value)
+        wait = WebDriverWait(self.driver, 5, 1)
+        return wait.until(lambda x: x.find_element(by, value))
+
+    def find_elements(self, feature):
+        """
+        根据特征，找元素
+        :param feature: 特征
+        :return: 元素
+        """
+        wait = WebDriverWait(self.driver, 5, 1)
+        return wait.until(lambda x: x.find_elements(feature[0], feature[1]))
+
+    @staticmethod
+    def __make_xpath_with_unit_feature(xpath_value):
+        """
+        拼接xpath中间的部分
+        :param loc:
+        :return:
+        """
+        key_index = 0
+        value_index = 1
+        option_index = 2
+
+        res_value = ""
+        args = xpath_value.split(",")
+        if len(args) == 3:
+            if args[option_index] == "1":
+                res_value += "@%s='%s' and " % (args[key_index], args[value_index])
+            elif args[option_index] == "0":
+                res_value += "contains(@%s,'%s') and " % (args[key_index], args[value_index])
+        elif len(args) == 2:
+            res_value += "contains(@%s,'%s') and " % (args[key_index], args[value_index])
+
+        return res_value
+
+    def __make_xpath_with_feature(self, xpath_value):
+
+        xpath_start = "//*["
+        xpath_end = "]"
+        res_value = ""
+
+        if isinstance(xpath_value, str):
+
+            # 系统的xpath
+            if xpath_value.startswith("/"):
+                return xpath_value
+
+            res_value = self.__make_xpath_with_unit_feature(xpath_value)
+
+        elif isinstance(xpath_value, tuple):
+            for i in xpath_value:
+                res_value += self.__make_xpath_with_unit_feature(i)
+
+        res_value = res_value.rstrip(" and ")
+
+        res_value = xpath_start + res_value + xpath_end
+
+        return res_value
+
+```
+
+page的元素可以由
+
+```
+display_button = By.XPATH, "//*[contains(@text,'显示')]"
+```
+
+改为
+
+```
+display_button = By.XPATH, "text,显示"
+```
