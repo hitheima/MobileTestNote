@@ -3,7 +3,7 @@
 安装node.js （使用 npm 或 node 验证）
 
 ```
-node-v8.11.3-x64.msi进行安装
+node-v8.11.3-x64.msi(windows) 或 node-v8.10.0.pkg(mac) 进行安装
 ```
 
 安装cnpm （使用cnpm验证）
