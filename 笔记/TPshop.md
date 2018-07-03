@@ -181,9 +181,110 @@ com.tpshop.malls_2.1.0_2.apk
    4. request中的param就是 params列表中的每个值。
    5. 将param进行返回，可以知己在使用fixture的函数中，进行使用。
 
+### 判断登录状态
 
+- 思路：
+  - 进入到我的页面
+  - 点击设置
+  - 如果设置上方的标题是
+    - 设置
+      - 已经登录
+    - 登录
+      - 没有登录
+- 步骤：
+  - is_login是在我的界面进行判断，所以函数应该写在mine_page中
+  - 点击设置
+  - 找到标题的id进行判断，text是否等于设置
+    - 如果是，已经登录
+    - 如果不是，没有登录
+  - 在真正的return之前，应该先将界面返回到“我的”的位置。
+  - 在之前，添加一个返回操作
+    - 因为在appium1.7中，
+    - 如果使用了Uiautomator2，那么，使用press_keycode执行案件操作
+    - 如果没有使用Uiautomator2，那么，使用key_event执行案件操作
+    - 自己在base中写一个函数，通过driver的capabilities是否有“automationName”的key判断
+    - 执行对应的代码
 
+### 收货地址之前登录
 
+- 先写test_address的脚本，在这个页面中，点击我的
+- 判断登录状态，如果没有登录，则登录
+  - 在登录的页面中（login_page）单独写一个函数，
+  - 这个函数可以输入正确的用户名和密码，并且点击登录。
+- 点击收货地址，在if外编写
+
+### *在base中编写根据方向参数滑动一屏的方法
+
+```
+    def scroll_page_one_time(self, direction="up"):
+        """
+        调用一次滑动一屏
+        :param direction: 方向 默认为从下往上
+            "up":从下往上 "down":从上往下 "left":从右往左 "right":从左往右
+        :return:
+        """
+        # 滑动
+        screen_width = self.driver.get_window_size()["width"]
+        screen_height = self.driver.get_window_size()["height"]
+
+        center_x = screen_width * 0.5
+        center_y = screen_height * 0.5
+
+        start_x, start_y, end_x, end_y = 0, 0, 0, 0
+
+        if direction in ["up", "down"]:
+            start_x = center_x
+            start_y = screen_height * 0.75
+            end_x = center_x
+            end_y = screen_height * 0.25
+        elif direction in ["left", "right"]:
+            start_x = screen_width * 0.75
+            start_y = center_y
+            end_x = screen_width * 0.25
+            end_y = center_y
+
+        if direction in ["up", "left"]:
+            self.driver.swipe(start_x, start_y, end_x, end_y, 3000)
+        elif direction in ["down", "right"]:
+            self.driver.swipe(end_x, end_y, start_x, start_y, 3000)
+        else:
+            raise Exception("direction参数只能使用 up/down/left/right")
+
+        time.sleep(1)
+```
+
+### *在base中编写滑动查找特征的方法
+
+```
+def is_feature_exist_scroll_page(self, feature, direction="up"):
+    """
+    滑动查找某个特征是否存在，并返回
+    :param feature: 特征
+    :param direction: 方向 默认为从下往上
+        "up":从下往上 "down":从上往下 "left":从右往左 "right":从左往右
+    :return:
+    """
+    record = ""
+    while True:
+        if record == self.driver.page_source:
+            return False
+        record = self.driver.page_source
+        try:
+            self.find_element(feature)
+            return True
+        except TimeoutException:
+            self.scroll_page_one_time(direction)
+```
+
+### 查找收货地址的元素并点击
+
+```
+if self.page.mine.is_feature_exist_scroll_page(self.page.mine.address_feature):  # 如果找到则返回true
+    # 点击进入收货地址
+    self.page.mine.click_address()
+else:
+    assert False
+```
 
 
 
