@@ -73,6 +73,9 @@ monkey测试2：adb shell monkey -p cn.goapk.market –s 10 100
 --pct-trackball <percent>
 调整轨迹事件的百分比(轨迹事件由一个或几个随机的移动组成，有时还伴随有点击)。
 
+--pct-pinchzoom <percent>
+缩放事件百分比
+
 --pct-nav <percent>
 调整“基本”导航事件的百分比(导航事件由来自方向输入 设备的up/down/left/right组成)。
 
@@ -84,6 +87,9 @@ monkey测试2：adb shell monkey -p cn.goapk.market –s 10 100
 
 --pct-appswitch <percent>
 调整启动Activity的百分比。在随机间隔里，Monkey将执行一个startActivity()调 用，作为最大程度覆盖包中全部Activity的一种方法。
+
+--pct-flip <percent>
+键盘翻转事件百分比
 
 --pct-anyevent <percent>
 调整其它类型事件的百分比。它包罗了所有其它类型的事件，如：按键、其它不常用的设备按钮、等等。
@@ -100,3 +106,11 @@ Monkey 测试出现错误后，一般的分析步骤
 \1. 程序无响应的问题: 在日志中搜索 “ANR”
 \2. 崩溃问题：在日志中搜索 “Exception”   (如果出现空指针， NullPointerException)  肯定是有bug
 Monkey 执行中断， 在log最后也能看到当前执行次数
+
+
+
+### allure 报告截图
+
+f = open('./b.png','rb').read() 
+
+allure.attach('this is a img',f,allure.attach_type.PNG)
