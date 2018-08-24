@@ -15,7 +15,7 @@ npm install -g cnpm --registry=https://registry.npm.taobao.org
 下载 appium-uiautomator2-driver
 
 ```
- cnpm install appium-uiautomator2-driver
+cnpm install appium-uiautomator2-driver
 ```
 
 前置代码添加

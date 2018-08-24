@@ -2,6 +2,16 @@
 
 ## TPShop
 
+### 跑脚本
+
+在1.0的时候，写的自动化脚本。在下一个版本的时候先跑一边。看报告
+
+1. 如果通过 - 基本上这些功能都没有问题。
+
+2. 如果没有通过 - 进行功能测试 - 找原因 
+   1. 如果是脚本设计的问题，不忙的时候修改脚本
+   2. 如国是软件的问题，写报告，让开发改！！！
+
 ### 下载&安装
 
 http://sj.qq.com/myapp/detail.htm?apkName=com.tpshop.malls&apkCode=2
@@ -52,7 +62,7 @@ com.tpshop.malls_2.1.0_2.apk
 
 将之前的项目中的base和pytest.ini直接复制到新的项目中。
 
-参考：https://github.com/hitheima/SZ_TPShop（以后简称之前的项目）
+参考：https://github.com/hitheima/TPShop_BJ4.git（以后简称之前的项目）
 
 ### 上传到github
 
