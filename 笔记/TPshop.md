@@ -178,18 +178,30 @@ com.tpshop.malls_2.1.0_2.apk
 
 - 普通的参数化
   - 数据不需要通过yml加载，自己写函数。因为随机的数字是yml没法生成的。
-- fixture
-  - 数据不需要通过yml加载，自己写函数。因为随机的数字是yml没法生成的。
 
 1. 都是在类中，写函数。
 2. 写一个专门生成多位数字的随机数的字符串
 3. 在列表中，调用多次这个函数，或者自己另开一个方法，来拼一个list
-4. 关于fixture
-   1. 需要在函数的fixture标记中，写一个params的参数，并且传入一个列表。
-   2. 这个列表的元素个数，决定着这个test脚本运行的次数。
-   3. 如果想获取这个列表中的元素，需要在fixture所标记的函数中，写一个request参数
-   4. request中的param就是 params列表中的每个值。
-   5. 将param进行返回，可以知己在使用fixture的函数中，进行使用。
+
+### allure上传截图到报告
+
+上传截图的目的：
+
+在关键的步骤，进行截图，并上传到报告中。防止出现不能用但是不报错的情况。
+
+```
+allure.attach("描述名字", "描述内容(文字、图片)", "针对第二个参数的类型")
+
+比如：
+allure.attach("截图：", self.driver.get_screenshot_as_png(), AttachmentType.PNG)
+allure.attach("用户名：", "13800138006", AttachmentType.TEXT) # 如果是文字，最后这个参数可以省略
+```
+
+### os.sep
+
+在windows和mac或linux中，盘符的分割线是不同的。可以使用os模块中的sep，进行区分。sep会自动根据系统的不同，转化成对应的不同的盘符的分割线
+
+在解析yml的方法中，进行修改即可。所有的盘符的分割线修改为sep。
 
 ### 判断登录状态
 
