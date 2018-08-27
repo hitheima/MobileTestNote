@@ -109,8 +109,3 @@ Monkey 执行中断， 在log最后也能看到当前执行次数
 
 
 
-### allure 报告截图
-
-f = open('./b.png','rb').read() 
-
-allure.attach('this is a img',f,allure.attach_type.PNG)
