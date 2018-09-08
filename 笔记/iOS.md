@@ -150,4 +150,14 @@ class LoginPage(BaseAction):
 self.login_page.scroll_page_one_time()
 ```
 
-### 
+###iOS真机调试
+
+配置三个东西
+
+- 电脑
+- 手机
+- 应用程序
+
+xcode - 属性 - 账户 - 左下角+号 - 输入开发者账号
+
+![Snip20180828_15](移动端测试_image/Snip20180828_15.png)

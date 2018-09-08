@@ -17,8 +17,6 @@
 
   - 点击红色的按钮，进入查看元素的模式
 
-    
-
   - ![Snip20180410_57](移动端测试_image/Snip20180410_57.png)
 
   ​
@@ -26,6 +24,7 @@
   - 选中需要查看的控件，右侧源码即可跳转。
 
 - 方式2
+
   - 点击inspect查看元素信息。
 
 #### 实现webview自动化
@@ -92,6 +91,10 @@ https://github.com/appium/appium/blob/master/docs/en/writing-running-appium/web/
 ```
 appium --chromedriver-executable 解压后的chromedriver的路径
 ```
+
+
+
+
 
 #### 关于inspect空白
 
