@@ -96,7 +96,7 @@
 
 ```
 
-![allure_commind](/Users/Yoson/Desktop/MobileTestNote/%E7%AC%94%E8%AE%B0/%E7%A7%BB%E5%8A%A8%E7%AB%AF%E6%B5%8B%E8%AF%95_image/allure_commind.png)
+![allure_commind](./%E7%A7%BB%E5%8A%A8%E7%AB%AF%E6%B5%8B%E8%AF%95_image/allure_commind.png)
 
 ### Jenkins新建一个项目
 
@@ -113,7 +113,7 @@
 
 ```
 
-![J_General](/Users/Yoson/Desktop/MobileTestNote/%E7%AC%94%E8%AE%B0/%E7%A7%BB%E5%8A%A8%E7%AB%AF%E6%B5%8B%E8%AF%95_image/J_General.png)
+![J_General](./%E7%A7%BB%E5%8A%A8%E7%AB%AF%E6%B5%8B%E8%AF%95_image/J_General.png)
 
 ### 源码管理配置
 

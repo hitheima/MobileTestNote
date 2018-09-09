@@ -65,7 +65,7 @@
 
 ```
 
-![allure_xml](/Users/Yoson/Desktop/MobileTestNote/%E7%AC%94%E8%AE%B0/%E7%A7%BB%E5%8A%A8%E7%AB%AF%E6%B5%8B%E8%AF%95_image/allure_xml.png)
+![allure_xml](./%E7%A7%BB%E5%8A%A8%E7%AB%AF%E6%B5%8B%E8%AF%95_image/allure_xml.png)
 
 ### xml转html工具安装
 
@@ -90,7 +90,7 @@
 
 ```
 
-![allure_html](/Users/Yoson/Desktop/MobileTestNote/%E7%AC%94%E8%AE%B0/%E7%A7%BB%E5%8A%A8%E7%AB%AF%E6%B5%8B%E8%AF%95_image/allure_html.png)
+![allure_html](./%E7%A7%BB%E5%8A%A8%E7%AB%AF%E6%B5%8B%E8%AF%95_image/allure_html.png)
 
 ## 36.Allure之Pytest
 

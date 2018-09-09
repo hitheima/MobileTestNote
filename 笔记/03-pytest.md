@@ -274,7 +274,7 @@
 
 ```
 
-![报告截图](/Users/Yoson/Desktop/MobileTestNote/%E7%AC%94%E8%AE%B0/%E7%A7%BB%E5%8A%A8%E7%AB%AF%E6%B5%8B%E8%AF%95_image/report.png)
+![报告截图](./%E7%A7%BB%E5%8A%A8%E7%AB%AF%E6%B5%8B%E8%AF%95_image/report.png)
 
 ### Pytest控制函数执行顺序
 
