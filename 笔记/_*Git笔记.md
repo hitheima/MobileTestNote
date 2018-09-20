@@ -77,7 +77,7 @@ git config --list   # 查看配置信息
    git init
    git add newfile.txt(自己的文件)
    git commit -m "first commit"
-   git remote add origin https://github.com/hitheima/bj4.git(自己的项目地址)
+   git remote add origin https://github.com/hitheima/xxxxxxxxxxxx.git(自己的项目地址)
    git push -u origin master
    ```
 
