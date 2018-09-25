@@ -1,4 +1,4 @@
-## 37.Jenkins安装
+##  37.Jenkins安装
 
 ```
 	Jenkins是一个开源软件项目，是基于Java开发的一种持续集成工具，用于监控持续重复的工作，
@@ -21,7 +21,7 @@
 	1.下载jenkins.war
 	2.进入jenkins.war所在目录，执行：java -jar jenkins.war
 	3.浏览器进入：localhost:8080
-
+	
 ```
 
 ### 安装所需插件
@@ -41,37 +41,37 @@
 
 ```
 
-![jenkins安装启动页](/Users/Yoson/Desktop/MobileTestNote/笔记/移动端测试_image/jenkins%E5%AE%89%E8%A3%85%E5%90%AF%E5%8A%A8%E9%A1%B5.png)
-![jenkins初始密码](/Users/Yoson/Desktop/MobileTestNote/笔记/移动端测试_image/jenkins%E5%88%9D%E5%A7%8B%E5%AF%86%E7%A0%81.png)
+![jenkins安装启动页](./%E7%A7%BB%E5%8A%A8%E7%AB%AF%E6%B5%8B%E8%AF%95_image/jenkins%E5%AE%89%E8%A3%85%E5%90%AF%E5%8A%A8%E9%A1%B5.png)
+![jenkins初始密码](./%E7%A7%BB%E5%8A%A8%E7%AB%AF%E6%B5%8B%E8%AF%95_image/jenkins%E5%88%9D%E5%A7%8B%E5%AF%86%E7%A0%81.png)
 
 ```
 	4.安装建议插件
 
 ```
 
-![jenkins建议安装插件](/Users/Yoson/Desktop/MobileTestNote/笔记/移动端测试_image/jenkins%E5%BB%BA%E8%AE%AE%E5%AE%89%E8%A3%85%E6%8F%92%E4%BB%B6.png)
-![jenkins插件安装中](/Users/Yoson/Desktop/MobileTestNote/笔记/移动端测试_image/jenkins%E6%8F%92%E4%BB%B6%E5%AE%89%E8%A3%85%E4%B8%AD.png)
+![jenkins建议安装插件](./%E7%A7%BB%E5%8A%A8%E7%AB%AF%E6%B5%8B%E8%AF%95_image/jenkins%E5%BB%BA%E8%AE%AE%E5%AE%89%E8%A3%85%E6%8F%92%E4%BB%B6.png)
+![jenkins插件安装中](./%E7%A7%BB%E5%8A%A8%E7%AB%AF%E6%B5%8B%E8%AF%95_image/jenkins%E6%8F%92%E4%BB%B6%E5%AE%89%E8%A3%85%E4%B8%AD.png)
 
 ```
 	5.设置用户初始化信息
 
 ```
 
-![jenkins设置用户信息](/Users/Yoson/Desktop/MobileTestNote/笔记/移动端测试_image/jenkins%E8%AE%BE%E7%BD%AE%E7%94%A8%E6%88%B7%E4%BF%A1%E6%81%AF.png)
+![jenkins设置用户信息](./%E7%A7%BB%E5%8A%A8%E7%AB%AF%E6%B5%8B%E8%AF%95_image/jenkins%E8%AE%BE%E7%BD%AE%E7%94%A8%E6%88%B7%E4%BF%A1%E6%81%AF.png)
 
 ```
 	6.jenkins启动
 
 ```
 
-![jenkins启动](/Users/Yoson/Desktop/MobileTestNote/笔记/移动端测试_image/jenkins%E5%90%AF%E5%8A%A8.png)
+![jenkins启动](./%E7%A7%BB%E5%8A%A8%E7%AB%AF%E6%B5%8B%E8%AF%95_image/jenkins%E5%90%AF%E5%8A%A8.png)
 
 ```
 	7.jenkins首页
 
 ```
 
-![jenkins首页](/Users/Yoson/Desktop/MobileTestNote/笔记/移动端测试_image/jenkins%E9%A6%96%E9%A1%B5.png)
+![jenkins首页](./%E7%A7%BB%E5%8A%A8%E7%AB%AF%E6%B5%8B%E8%AF%95_image/jenkins%E9%A6%96%E9%A1%B5.png)
 
 ## 38.Jenkins持续集成配置
 
@@ -124,8 +124,8 @@
 
 ```
 
-![J_源码](/Users/Yoson/Desktop/MobileTestNote/笔记/移动端测试_image/J_%E6%BA%90%E7%A0%81.png)
-![github用户名密码](/Users/Yoson/Desktop/MobileTestNote/笔记/移动端测试_image/github%E7%94%A8%E6%88%B7%E5%90%8D%E5%AF%86%E7%A0%81.png)
+![J_源码](./%E7%A7%BB%E5%8A%A8%E7%AB%AF%E6%B5%8B%E8%AF%95_image/J_%E6%BA%90%E7%A0%81.png)
+![github用户名密码](./%E7%A7%BB%E5%8A%A8%E7%AB%AF%E6%B5%8B%E8%AF%95_image/github%E7%94%A8%E6%88%B7%E5%90%8D%E5%AF%86%E7%A0%81.png)
 
 ### 构建触发器
 
@@ -134,7 +134,7 @@
 	9.输入crontab命令
 		举例：
 			*/1 * * * * # 每一分钟检查一次
-	10.点击增加构建步骤，选择Execute shell，win选择 execute windows shell
+	10.点击增加构建步骤，mac选择Execute shell，win选择 execute windows shell
 	11.Command输入
 		mac：
 		export PATH=$PATH:"pytest可执行文件的目录"
@@ -146,7 +146,7 @@
 
 ```
 
-![J_构建](/Users/Yoson/Desktop/MobileTestNote/笔记/移动端测试_image/J_%E6%9E%84%E5%BB%BA.png)
+![J_构建](./%E7%A7%BB%E5%8A%A8%E7%AB%AF%E6%B5%8B%E8%AF%95_image/J_%E6%9E%84%E5%BB%BA.png)
 
 ```
 时程表的格式如下:
@@ -164,7 +164,7 @@ f1 f2 f3 f4 f5 program
 
 ```
 
-![J_构建后](/Users/Yoson/Desktop/MobileTestNote/笔记/移动端测试_image/J_%E6%9E%84%E5%BB%BA%E5%90%8E.png)
+![J_构建后](./%E7%A7%BB%E5%8A%A8%E7%AB%AF%E6%B5%8B%E8%AF%95_image/J_%E6%9E%84%E5%BB%BA%E5%90%8E.png)
 
 ## 39.jenkins触发项目构建方式
 
@@ -176,7 +176,7 @@ f1 f2 f3 f4 f5 program
 
 - 触发器在定时任务到达时，会出发项目构建
 
-![手动构建](/Users/Yoson/Desktop/MobileTestNote/笔记/移动端测试_image/%E6%89%8B%E5%8A%A8%E6%9E%84%E5%BB%BA.png)
+![手动构建](./%E7%A7%BB%E5%8A%A8%E7%AB%AF%E6%B5%8B%E8%AF%95_image/%E6%89%8B%E5%8A%A8%E6%9E%84%E5%BB%BA.png)
 
 ## 40.Jenkins邮件配置
 
@@ -230,7 +230,7 @@ f1 f2 f3 f4 f5 program
 
 ```
 
-![邮件列表](/Users/Yoson/Desktop/MobileTestNote/笔记/移动端测试_image/%E9%82%AE%E4%BB%B6%E5%88%97%E8%A1%A8.png)
+![邮件列表](./%E7%A7%BB%E5%8A%A8%E7%AB%AF%E6%B5%8B%E8%AF%95_image/%E9%82%AE%E4%BB%B6%E5%88%97%E8%A1%A8.png)
 
 
 
