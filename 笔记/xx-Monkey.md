@@ -33,7 +33,7 @@ adb shell monkey -p cn.goapk.market 100 > 路径/log.txt
 
 - -p <允许的包名列表>         
 
-用此参数指定一个或多个包。指定包之后，monkey将只允许系统启动指定的app。如果指定包， monkey将允许系统启动设备中的所有app。  
+用此参数指定一个或多个包。指定包之后，monkey将只允许系统启动指定的app。如果指定包列表， monkey将允许系统启动设备中的所有app。  
 
 指定一个包：adb shell monkey -p cn.goapk.market 100   
 
@@ -70,11 +70,14 @@ monkey测试2：adb shell monkey -p cn.goapk.market –s 10 100
 --pct-motion <percent>
 调整动作事件的百分比(动作事件由屏幕上某处的一个down事件、一系列的伪随机事 件和一个up事件组成)。
 
+--pct-pinchzoom <percent>
+缩放事件百分比
+
 --pct-trackball <percent>
 调整轨迹事件的百分比(轨迹事件由一个或几个随机的移动组成，有时还伴随有点击)。
 
---pct-pinchzoom <percent>
-缩放事件百分比
+--pct-rotation <percent>
+屏幕旋转事件百分比
 
 --pct-nav <percent>
 调整“基本”导航事件的百分比(导航事件由来自方向输入 设备的up/down/left/right组成)。
