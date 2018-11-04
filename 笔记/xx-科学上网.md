@@ -16,8 +16,14 @@ https://io.freess.today/
 
 
 
-服务器：38.141.44.98
+服务器：103.114.161.175
 
-端口:7776
+端口：777
 
-密码：dongtaiwang.com
+密码：ntdtv.com
+
+协议：auth_sha1_v4
+
+混淆：plain
+
+加密方式：aes-256-cfb
