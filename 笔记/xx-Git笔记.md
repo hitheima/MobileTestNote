@@ -19,9 +19,9 @@
 
 直接关闭。
 
-进入 ”C:\Users\你的电脑名字\AppData\Local\Atlassian\SourceTree“ 将 account.json 发到这个目录中
+进入 ”C:\Users\你的电脑名字\AppData\Local\Atlassian\SourceTree“ 将 accounts.json 发到这个目录中
 
-在次从桌面进入sourcetree
+在从桌面进入sourcetree
 
 如果没有， ”C:\Users\你的电脑名字\AppData\Local\SourceTree\app-2.1\sourcetree.exe“ 将这个文件 右键-发送到桌面快捷方式
 
@@ -131,29 +131,6 @@ git push
 左上角 点击 推送
 
 
-
-### jenkins 快速安装
-
-win：
-
-```
-c:/users/小明/.jenkins/
-```
-
-mac：
-
-```
-/users/小明/.jenkins
-```
-
-mkdir创建文件夹.jenkins
-
-### 启动jenkins
-
-```
-1.进入jenkins.war所在目录，执行：java -jar jenkins.war
-2.浏览器进入：localhost:8080
-```
 
 ### clone
 

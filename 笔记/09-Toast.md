@@ -12,6 +12,12 @@ node-v8.11.3-x64.msi(windows) 或 node-v8.10.0.pkg(mac) 进行安装
 npm install -g cnpm --registry=https://registry.npm.taobao.org
 ```
 
+```
+npm cache clean --force
+npm cache verify
+npm config set strict-ssl false
+```
+
 下载 appium-uiautomator2-driver
 
 ```

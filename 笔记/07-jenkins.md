@@ -1,4 +1,29 @@
-##  37.Jenkins安装
+### jenkins 快速安装
+
+win：
+
+```
+c:/users/小明/.jenkins/
+```
+
+mac：
+
+```
+/users/小明/.jenkins
+```
+
+mkdir创建文件夹.jenkins
+
+### 启动jenkins
+
+```
+1.进入jenkins.war所在目录，执行：java -jar jenkins.war
+2.浏览器进入：localhost:8080
+```
+
+
+
+### 37.Jenkins安装
 
 ```
 	Jenkins是一个开源软件项目，是基于Java开发的一种持续集成工具，用于监控持续重复的工作，

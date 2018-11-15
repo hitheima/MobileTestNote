@@ -10,7 +10,7 @@
 
 2. 如果没有通过 - 进行功能测试 - 找原因 
    1. 如果是脚本设计的问题，不忙的时候修改脚本
-   2. 如国是软件的问题，写报告，让开发改！！！
+   2. 如果是软件的问题，写报告，让开发改！！！
 
 ### 下载&安装
 
@@ -60,9 +60,9 @@ com.tpshop.malls_2.1.0_2.apk
 
 新建项目
 
-将之前的项目中的base和pytest.ini直接复制到新的项目中。
+将之前的项目中的base和pytest.ini和.gitignore直接复制到新的项目中。
 
-参考：https://github.com/hitheima/TPShop_BJ4.git（以后简称之前的项目）
+参考：https://github.com/hitheima/TPShop_SY1（以后简称之前的项目）
 
 ### 上传到github
 
